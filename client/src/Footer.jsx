@@ -2,7 +2,7 @@
 export default function Footer() {
     return(
         <footer>
-            <div className="footer_inner">
+            {/* <div className="footer_inner">
                 <div className="footer_item">
                     <div className="footer_h">ссылки</div>
                     <div className="footer_icons">
@@ -29,6 +29,30 @@ export default function Footer() {
             <div className="copyright">
             Все права защищены ©️ <br />
             2023
+            </div> */}
+            <div className="footer_inner">
+                <div className="links">
+                    <div className="links_block">
+                        <div className="links_h">Соцсети</div>
+                        <div className="links_main">
+                            <a href="">Instagram: @compClub</a>
+                            <a href="">Telegram: @compClub</a>
+                        </div>
+                    </div>
+                    <div className="links_block">
+                        <div className="links_h">Ссылки</div>
+                        <div className="links_main">
+                            <a href="">Главная</a>
+                            <a href="">Контакты</a>
+                            <a href="">Акции</a>
+                            <a href="">Вход</a>
+                        </div>
+                    </div>
+                </div>
+                <div className="copyright">
+                    Все права защищены ©️ <br />
+                    2023
+                </div>
             </div>
         </footer>
     );

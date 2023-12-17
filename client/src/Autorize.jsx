@@ -6,8 +6,10 @@ import Cookies from 'universal-cookie';
 export default function Autorize() {
     const cookies = new Cookies(null, { path: '/' });
     console.log(cookies);
-    const dis = {left: '150%', };
-    const ap = {left: '30%', };
+    // const disAnim = {opacity: 0, display: 'none', };
+    // const apAnim = {opacity: 1, display: 'block', };
+    const dis = {display: 'none', opacity: 0};
+    const ap = {display: 'block', opacity: 1}
     const [loginStyle, setLoginStyle] = useState(ap);
     const [regStyle, setRegStyle] = useState(dis);
     const [regText, setReg] = useState('');
@@ -19,11 +21,21 @@ export default function Autorize() {
         function change() {
             setLoginStyle(dis);
             setRegStyle(ap);
+            // setRegStyle(ap);
+            // setTimeout(500, () => {
+            //     setLoginStyle(dis);
+            //     setRegStyle(apAnim);
+            // });
         }
 
         function unchange() {
+            setRegStyle(dis);
             setLoginStyle(ap);
-            setRegStyle(dis);    
+            // setLoginStyle(ap);
+            // setTimeout(500, () => {
+            //     setRegStyle(dis);
+            //     setLoginStyle(apAnim);
+            // });
         }
 
         function reg(event) {
@@ -83,7 +95,7 @@ export default function Autorize() {
                     <input type="submit" value="Войти"/> <br />
                     <div className="autorization_change">
                         <span>Нет аккаунта?</span> <br />
-                        <span onClick={change} className="change_btn">Зарегестрироваться</span>
+                        <span onClick={change} className="change_btn">Регистрация</span>
                     </div>
                     <span id="">{logText}</span>
                 </div>
@@ -94,12 +106,12 @@ export default function Autorize() {
                     <div className="autorization_h">Регистрация</div>
                     <input type="text" required placeholder="Логин"/>
                     <input type="password" required placeholder="Пароль"/>
-                    <input type="text" required placeholder="Имя"/>
-                    <input type="tel" required placeholder="+79999999999"/>
+                    <input type="text" required placeholder="ФИО"/>
+                    <input type="tel" required placeholder="Телефон"/>
                     <input type="submit" value="Зарегестрироваться"/>
                     <div className="autorization_change">
                         <span>Есть аккаунт?</span> <br />
-                        <span onClick={unchange} className="change_btn">Войти</span>
+                        <span onClick={unchange} className="change_btn">Вход</span>
                     </div>
                     <span id="">{regText}</span>
                 </div>
