@@ -43,23 +43,3 @@ class Order(models.Model):
                                   on_delete=models.SET_NULL, null=True)
     time1 = models.DateTimeField()
     time2 = models.DateTimeField()
-
-# class Auto(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     tarif = models.ForeignKey(Tariff, to_field="id", 
-#                               on_delete=models.SET_NULL, null=True)
-#     place = models.ForeignKey(ParkingPlace, to_field="id", 
-#                                on_delete=models.SET_NULL, null=True, unique=True)
-#     owner = models.ForeignKey(Client, to_field="id", on_delete=models.CASCADE)
-    
-#     model = models.CharField(max_length=255)
-
-
-# class Employee(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     name = models.CharField(max_length=255)
-#     parking=  models.ForeignKey(Parking, to_field="id", 
-#                                 on_delete=models.SET_NULL, null=True)
-#     login = models.CharField(max_length=255, unique=True)
-#     password = models.CharField(max_length=255)
-#     type = models.CharField(max_length=20)
