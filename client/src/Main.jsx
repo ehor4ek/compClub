@@ -61,7 +61,7 @@ export default function Main() {
         <div className="first">
             <div className="first_inner">
                 <div className="first_h">Бронируй устройство, пока есть места!</div>
-                <a href="" className="first_a">Забронировать</a>
+                <a href="/autorize" className="first_a">Забронировать</a>
             </div>
         </div>
     </div>

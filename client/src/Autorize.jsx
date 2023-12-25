@@ -52,13 +52,16 @@ export default function Autorize() {
                     console.log(response);
                     if (response.status == 201) {
                         setReg("Регистрация прошла успешно");
+                        data['login'] = i[0].value;
+                        data['password'] = i[1].value;
+                        cookies.set("client", response.data, { path: '/' }); 
                     } else {
-                        setReg("Что-то пошло не так");
+                        setReg(response.data);
                     }
                 })
                 .catch(function (error) {
                     console.log(error);
-                    setReg("Что-то пошло не так");
+                    setReg(error.response.data);
                 });
             } else {
                 setReg("Указан неверный формат телефона");
@@ -74,15 +77,17 @@ export default function Autorize() {
                 console.log(response.data);
                 if (response.status == 200) {
                     setLog("Вход выполнен успешно");
+                } else {
+                    setLog(response.data);
                 }
                 var cl = response.data;
                 cl['login'] = i[0].value;
                 cl['password'] = i[1].value;
-                cookies.set("client", response.data, { path: '/' });
+                cookies.set("client", cl, { path: '/' });
             })
             .catch(function (error) {
                 console.log(error);
-                setLog("Что-то пошло не так");
+                setLog(error.response.data);
                 });
         }
         return (

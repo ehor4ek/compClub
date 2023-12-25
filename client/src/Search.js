@@ -1,4 +1,4 @@
-import Car from "./Car";
+import Order from "./Order";
 function search(event, obj, fields, f) {
     var v = event.target.previousSibling.value.toString().toLowerCase();
     // var newObj = '';
@@ -9,7 +9,7 @@ function search(event, obj, fields, f) {
                     return true;
             }
         });
-    obj = obj.map((item, index) => (<Car key={item.id} data={item} id={item.id}/>));
+    obj = obj.map((item, index) => (<Order key={item.id} data={item} id={item.id}/>));
     f(obj);
 }
 

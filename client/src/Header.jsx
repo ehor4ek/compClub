@@ -49,7 +49,7 @@ export default function Header() {
                                 <a href="/actions" className="menu_block_inner"><span>Акции</span></a>
                             </div>
                             <div className="menu_block">
-                                <a href="" className="menu_block_inner">Профиль<span></span></a>
+                                <a href="/autorize" className="menu_block_inner">Профиль<span></span></a>
                             </div>
                             <div className="menu_block">
                                 <a href={getUrl('/admin')} className="menu_block_inner"><span>Админка</span></a>

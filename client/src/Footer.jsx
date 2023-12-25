@@ -42,10 +42,10 @@ export default function Footer() {
                     <div className="links_block">
                         <div className="links_h">Ссылки</div>
                         <div className="links_main">
-                            <a href="">Главная</a>
-                            <a href="">Контакты</a>
-                            <a href="">Акции</a>
-                            <a href="">Вход</a>
+                            <a href="/">Главная</a>
+                            <a href="/contacts">Контакты</a>
+                            <a href="/actions">Акции</a>
+                            <a href="/autorize">Вход</a>
                         </div>
                     </div>
                 </div>

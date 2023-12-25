@@ -2,16 +2,19 @@ import { useEffect, useState } from "react";
 import axios from 'axios';
 import getUrl from './getUrl';
 import Cookies from 'universal-cookie';
-import Car from "./Car";
+import Order from "./Order";
 import search from "./Search";
+import Adder from './Adder';
 
 export default function Account() {
     const cookies = new Cookies(null, { path: '/' });
-    var client = cookies.get('client');
+    var client = cookies.get('client', { path: '/' });
+    console.log(client);
     const [logText, setLog] = useState('');
     const [btnsText, setBtns] = useState('');
-    const [carsObj, setCars] = useState([]);
-    const [cars, setData] = useState([]);
+    const [ordersObj, setOrders] = useState([]);
+
+    const [orders, setData] = useState([]);
     var re = /^[\+][\d\ ]{10,15}\d$/;
     function clientSave(event) {
         event.preventDefault();
@@ -67,11 +70,12 @@ export default function Account() {
     }
 
     useEffect(() => {
-        axios.get(getUrl(`/api/auto/byclient/${client.id}/`))
+        axios.get(getUrl(`/api/order/byClient/${client.id}/`))
         .then(function (response) {
             if (response.status == 200) {
                 setData(response.data);
-                setCars(response.data.map((item, index) => (<Car data={item} key={index}/>)));
+                console.log('Orders', response.data);
+                setOrders(response.data.map((item, index) => (<Order data={item} key={index}/>)));
             }
             // var cl = response.data;
             // cl['login'] = i[0].value;
@@ -123,6 +127,11 @@ export default function Account() {
     return(
         <div className="account">
             <div className="account_inner">
+            <div className="account_btns">
+                    <span className="btn" onClick={logOut}><span className="span_inner"><span>Выйти</span></span> </span> 
+                    <span className="btn" onClick={delAccount}><span className="span_inner"><span>Удалить аккаунт</span></span></span>
+                    <div>{btnsText}</div>
+                </div>
                 <div className="account_data">
                     <div className="client">
                         <form name="client" id="client" onSubmit={(event) => clientSave(event)}>
@@ -137,34 +146,33 @@ export default function Account() {
                             </div>
                         </form>
                     </div>
-                    <div className="car_adder car_block client">
+                    {/* <div className="car_adder client">
                         <div className="car_changer">
                             <div className="form_data">
-                                <div className="car_adder_h">Выберите машину для поиска</div>
+                                <div className="hhh">Выберите бронь для поиска</div>
                                 <div className="places_search form_search_line">
                                     <input type="text" placeholder="Поиск" name="car_search"/>
-                                    <img src="search.png" alt="search" onClick={(event) => search(event, cars, ['model'], setCars)}/>
+                                    <img src="search.png" alt="search" onClick={(event) => search(event, orders, ['model'], setOrders)}/>
                                 </div>
                             </div>
                         </div>
+                    </div> */}
+                    <div className="orders">
+                        {ordersObj}
                     </div>
-                    <div className="places">
-                        {carsObj}
-                    </div>
-                    <div className="car_adder car_block client">
+                    {/* <div className="car_adder client">
                         <div className="car_adder_h">
-                            Добавьте новое авто
+                            Забронировать устройство
                         </div>
                         <form className="car_adder" onSubmit={(event) => addCar(event)}>
                             <input type="text" placeholder="Машина"/>
                             <input type="submit" value="Добавить"/>
                         </form>
-                    </div> 
-                </div>
-                <div className="account_btns">
-                    <span onClick={logOut}>Выйти</span> 
-                    <span onClick={delAccount}>Удалить аккаунт</span>
-                    <div>{btnsText}</div>
+                    </div> */}
+                    <div className="orders">
+                    <Adder/>
+                    </div>
+                     
                 </div>
             </div>
         </div>
