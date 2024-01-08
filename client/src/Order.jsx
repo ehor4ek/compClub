@@ -193,10 +193,6 @@ export default function(props) {
             <div className="order_block">
                 <div className="order_block_text">
                     <div className="order_item">
-                        <span> Бронь: </span>
-                        <span> {data.time1} - {data.time2} </span>
-                    </div>
-                    <div className="order_item">
                         <span>Услуга: </span>
                         <span> {service.name}. {service.description} </span>
                     </div>

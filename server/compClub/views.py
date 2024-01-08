@@ -100,6 +100,7 @@ class OrderViewSet(viewsets.ModelViewSet):
             return Response('', status=status.HTTP_200_OK)
         res = ser.OrderSerializer(orders, many=True)
         return Response(res.data, status=status.HTTP_200_OK)
+    
     @action(methods=["GET"], detail=False, url_path="byClient/(?P<id_client>[^/.]+)")
     def byClient(self, request, id_client):
         try:
@@ -113,23 +114,23 @@ class OrderViewSet(viewsets.ModelViewSet):
         print(res)
         return Response(res.data, status=status.HTTP_200_OK)
     
-    @action(methods=["GET"], detail=False, url_path="byDevice/(?P<id_price>[^/.]+)")
-    def byDevice(self, request, id_price):
-        try:
-            print('ok')
-            id_device =  mod.Price.objects.get(id=id_price).id_device.id
-            prices = mod.Price.objects.filter(id_device=id_device)
-            orders = []
-            orders = set([mod.Order.objects.filter(id_price=item.id) for item in prices])
-            orders = list(orders)
-            print(orders)
-        except:
-            return Response('Ошибка', status=status.HTTP_400_BAD_REQUEST)
-        # if len(orders) == 0:
-        #     return Response('', status=status.HTTP_200_OK)
-        res = ser.OrderSerializer(orders, many=True)
-        # print(res)
-        return Response(res.data, status=status.HTTP_200_OK)
+    # @action(methods=["GET"], detail=False, url_path="byDevice/(?P<id_price>[^/.]+)")
+    # def byDevice(self, request, id_price):
+    #     try:
+    #         print('ok')
+    #         id_device =  mod.Price.objects.get(id=id_price).id_device.id
+    #         prices = mod.Price.objects.filter(id_device=id_device)
+    #         orders = []
+    #         orders = set([mod.Order.objects.filter(id_price=item.id) for item in prices])
+    #         orders = list(orders)
+    #         print(orders)
+    #     except:
+    #         return Response('Ошибка', status=status.HTTP_400_BAD_REQUEST)
+    #     # if len(orders) == 0:
+    #     #     return Response('', status=status.HTTP_200_OK)
+    #     res = ser.OrderSerializer(orders, many=True)
+    #     # print(res)
+    #     return Response(res.data, status=status.HTTP_200_OK)
     
 class PriceViewSet(viewsets.ModelViewSet):
     serializer_class = ser.PriceSerializer
